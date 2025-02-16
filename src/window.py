@@ -5,18 +5,21 @@ class Window:
     def __init__(self, width, height, title="Maze Solver"):
         self.width = width
         self.height = height
-        self.root = Tk()
-        self.root.title(title)
-        self.canvas = Canvas(self.root, width=width, height=height)
-        self.canvas.pack()
-        self.running = False
+        self.__root = Tk()
+        self.__root.title(title)
+        self.__canvas = Canvas(self.__root, width=width, height=height)
+        self.__canvas.pack()
+        self.__running = False
+        self.__root.protocol("WM_DELETE_WINDOW", self.close)
 
     def redraw(self):
-        self.root.update_idletasks()
-        self.root.update()
+        self.__root.update_idletasks()
+        self.__root.update()
 
     def wait_for_close(self):
-        pass
+        self.__running = True
+        while self.__running:
+            self.redraw()
 
     def close(self):
-        pass
+        self.__running = False
