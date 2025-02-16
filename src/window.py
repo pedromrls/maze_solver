@@ -11,13 +11,12 @@ class Window:
         self.canvas.pack()
         self.running = False
 
-    def redraw():
-        self.root.update_idletasks() 
-        self.root.update() 
-        
+    def redraw(self):
+        self.root.update_idletasks()
+        self.root.update()
 
-    def wait_for_close():
+    def wait_for_close(self):
         pass
 
-    def close():
+    def close(self):
         pass
