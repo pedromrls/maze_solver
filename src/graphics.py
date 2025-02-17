@@ -3,12 +3,10 @@ from tkinter import Tk, BOTH, Canvas
 
 class Window:
     def __init__(self, width, height, title="Maze Solver"):
-        self.width = width
-        self.height = height
         self.__root = Tk()
         self.__root.title(title)
-        self.canvas = Canvas(self.__root, width=width, height=height)
-        self.canvas.pack()
+        self.__canvas = Canvas(self.__root, width=width, height=height)
+        self.__canvas.pack()
         self.__running = False
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
 
@@ -21,11 +19,11 @@ class Window:
         while self.__running:
             self.redraw()
 
+    def draw_line(self, line, fill_color):
+        line.draw(self.__canvas, fill_color=fill_color)
+
     def close(self):
         self.__running = False
-
-    def draw_line(self, line, fill_color):
-        line.draw(self.canvas, fill_color=fill_color)
 
 
 class Point:
@@ -35,16 +33,16 @@ class Point:
 
 
 class Line:
-    def __init__(self, point_1, point_2):
-        self.point_1 = point_1
-        self.point_2 = point_2
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
 
     def draw(self, canvas, fill_color):
         canvas.create_line(
-            self.point_1.x,
-            self.point_1.y,
-            self.point_2.x,
-            self.point_2.y,
+            self.p1.x,
+            self.p1.y,
+            self.p2.x,
+            self.p2.y,
             fill=fill_color,
             width=2,
         )
