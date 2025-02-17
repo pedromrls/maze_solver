@@ -2,13 +2,21 @@ from graphics import *
 
 
 def main():
-    win = Window(800, 600, "Test Window")
-    point_1 = Point(0, 0)
-    point_2 = Point(800, 600)
-    line = Line(point_1, point_2)
-    line2 = Line(Point(800, 0), Point(0, 600))
-    win.draw_line(line, "black")
-    win.draw_line(line2, "black")
+    # Create a window
+    win = Window(800, 600)
+
+    # Test 1: Default cell (all walls)
+    cell1 = Cell(50, 50, 100, 100, win)
+    cell1.draw()
+
+    # Test 2: Cell with no right wall
+    cell2 = Cell(150, 50, 200, 100, win, has_right_wall=False)
+    cell2.draw()
+
+    # Test 3: Cell with only top and bottom walls
+    cell3 = Cell(250, 50, 300, 100, win, has_left_wall=False, has_right_wall=False)
+    cell3.draw()
+
     win.wait_for_close()
 
 
