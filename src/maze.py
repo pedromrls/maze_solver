@@ -46,8 +46,13 @@ class Maze:
         cell.draw(x1_pos, y1_pos, x2_pos, y2_pos)
         self._animate()
 
+    def _break_entrance_and_exit(self):
+        pass
+
     def _animate(self):
         if self._win is None:
             return
         self._win.redraw()
         time.sleep(0.05)
+
+    
