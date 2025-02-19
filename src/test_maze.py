@@ -1,7 +1,6 @@
 import unittest
 from maze import Maze
 
-
 class TestsMaze(unittest.TestCase):
     def test_maze_create_cells(self):
         num_cols = 12
@@ -73,6 +72,18 @@ class TestsMaze(unittest.TestCase):
         # Assert animate does nothing and does not raise any exceptions
         self.assertTrue(success)
 
+    def test_break_entrance(self):
+        maze = Maze(0, 0, 3, 3, 10, 10)
+        maze._break_entrance_and_exit()
+        initial_cells = maze._cells
+        entrance = initial_cells[0][0]
+        self.assertFalse(entrance.has_left_wall)
 
+    def test_break_exit(self):
+        maze = Maze(0, 0, 3, 3, 10, 10)
+        maze._break_entrance_and_exit()
+        initial_cells = maze._cells
+        entrance = initial_cells[2][2]
+        self.assertFalse(entrance.has_right_wall)
 if __name__ == "__main__":
     unittest.main()

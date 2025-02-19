@@ -34,18 +34,27 @@ class Cell:
         if self.has_left_wall:
             left_wall = Line(__top_left, __bottom_left)
             self._win.draw_line(left_wall)
-
+        else:
+            left_wall = Line(__top_left, __bottom_left)
+            self._win.draw_line(left_wall, fill_color="white")
         if self.has_right_wall:
             right_wall = Line(__top_right, __bottom_right)
             self._win.draw_line(right_wall)
-
+        else:
+            right_wall = Line(__top_right, __bottom_right)
+            self._win.draw_line(right_wall, fill_color = "white")
         if self.has_top_wall:
             top_wall = Line(__top_left, __top_right)
             self._win.draw_line(top_wall)
-
+        else:
+            top_wall = Line(__top_left, __top_right)
+            self._win.draw_line(top_wall, fill_color = "white")
         if self.has_bottom_wall:
             bottom_wall = Line(__bottom_left, __bottom_right)
             self._win.draw_line(bottom_wall)
+        else:
+            bottom_wall = Line(__bottom_left, __bottom_right)
+            self._win.draw_line(bottom_wall, fill_color = "white")
 
     def draw_move(self, to_cell, undo=False):
         if undo:
