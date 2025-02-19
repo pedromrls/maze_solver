@@ -4,7 +4,7 @@ from graphics import Line, Point
 class Cell:
     def __init__(
         self,
-        win,
+        win=None,
         has_left_wall=True,
         has_right_wall=True,
         has_top_wall=True,
@@ -47,7 +47,7 @@ class Cell:
             bottom_wall = Line(__bottom_left, __bottom_right)
             self._win.draw_line(bottom_wall)
 
-    def draw_move_1(self, to_cell, undo=False):
+    def draw_move(self, to_cell, undo=False):
         if undo:
             fill_color = "gray"
         else:
@@ -58,19 +58,3 @@ class Cell:
             (to_cell._x1 + to_cell._x2) / 2, (to_cell._y1 + to_cell._y2) / 2
         )
         self._win.draw_line(Line(center_point_c1, center_point_c2), fill_color)
-
-    def draw_move_2(self, to_cell, undo=False):
-        half_length = abs(self._x2 - self._x1) // 2
-        x_center = half_length + self._x1
-        y_center = half_length + self._y1
-
-        half_length2 = abs(to_cell._x2 - to_cell._x1) // 2
-        x_center2 = half_length2 + to_cell._x1
-        y_center2 = half_length2 + to_cell._y1
-
-        fill_color = "red"
-        if undo:
-            fill_color = "gray"
-
-        line = Line(Point(x_center, y_center), Point(x_center2, y_center2))
-        self._win.draw_line(line, fill_color)

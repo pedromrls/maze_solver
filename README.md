@@ -4,4 +4,4 @@ Maze Solver
 Initial requirements
 
 Python 3.10 or higher
-Install Tkinter
+Tkinter installed
