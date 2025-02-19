@@ -21,6 +21,8 @@ class Cell:
         self._win = win
 
     def draw(self, x1, y1, x2, y2):
+        if self._win is None:
+            return
         self._x1 = x1
         self._y1 = y1
         self._x2 = x2
@@ -47,12 +49,12 @@ class Cell:
 
     def draw_move(self, to_cell, undo=False):
         if undo:
-            color = "gray"
+            fill_color = "gray"
         else:
-            color = "red"
+            fill_color = "red"
 
         center_point_c1 = Point((self._x1 + self._x2) / 2, (self._y1 + self._y2) / 2)
         center_point_c2 = Point(
             (to_cell._x1 + to_cell._x2) / 2, (to_cell._y1 + to_cell._y2) / 2
         )
-        self._win.draw_line(Line(center_point_c1, center_point_c2), fill_color=color)
+        self._win.draw_line(Line(center_point_c1, center_point_c2), fill_color)
