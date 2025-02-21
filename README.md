@@ -1,5 +1,7 @@
 # Maze Solver
 
+![Maze Solver Demo](images/RehzDga.gif)
+
 A Python-based visualization tool that generates and solves mazes using path-finding algorithms. Built with Tkinter for the graphical interface, this project demonstrates maze generation and solving with visual feedback.
 
 ## Features
