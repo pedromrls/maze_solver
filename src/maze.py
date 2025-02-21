@@ -4,7 +4,7 @@ from cell import Cell
 
 class Maze:
     def __init__(
-        self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win=None, seed=None, path_width=2, fill_color="turquoise"
+        self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, win=None, seed=None, path_width=2, path_color="turquoise"
     ):
         self._x1 = x1
         self._y1 = y1
@@ -15,7 +15,7 @@ class Maze:
         self._win = win
         self._cells = []
         self.path_width = path_width
-        self.fill_color = fill_color
+        self.path_color = path_color
         if seed:
             random.seed(seed)
         self._create_cells()
@@ -124,9 +124,9 @@ class Maze:
 
                 # dynamically checks the attributes
                 if not getattr(current, wall_attr) and not neighbor._visited:
-                    current.draw_move(neighbor, fill_color=self.fill_color, width=self.path_width)
+                    current.draw_move(neighbor, fill_color=self.path_color, width=self.path_width)
                     if self._solve_r(ni, nj):
                         return True
                     else:
-                        current.draw_move(neighbor, fill_color=self.fill_color, width=self.path_width, undo=True)
+                        current.draw_move(neighbor, fill_color=self.path_color, width=self.path_width, undo=True)
         return False
