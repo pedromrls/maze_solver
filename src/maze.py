@@ -20,6 +20,7 @@ class Maze:
         self._break_entrance_and_exit()
         self._break_walls_r(0, 0)
         self._reset_cells_visited()
+        self.solve()
 
     def _create_cells(self):
         for col_id in range(self._num_cols):
@@ -95,3 +96,35 @@ class Maze:
         for row in self._cells:
             for cell in row:
                 cell._visited = False
+
+    def solve(self):
+        return self._solve_r(0, 0)
+
+    def _solve_r(self, i, j):
+        self._animate()
+        current = self._cells[i][j]
+        current._visited = True
+        end = self._cells[self._num_cols - 1][self._num_rows - 1]
+        if current == end:
+            return True
+        directions = [
+            (-1, 0, "has_left_wall"),
+            (1, 0, "has_right_wall"),
+            (0, -1, "has_top_wall"),
+            (0, 1, "has_bottom_wall"),
+        ]
+        for di, dj, wall_attr in directions:
+            ni, nj = i + di, j + dj
+
+            # checks that the index are valid
+            if 0 <= ni < self._num_cols and 0 <= nj < self._num_rows:
+                neighbor = self._cells[ni][nj]
+
+                # dynamically checks the attributes
+                if not getattr(current, wall_attr) and not neighbor._visited:
+                    current.draw_move(neighbor)
+                    if self._solve_r(ni, nj):
+                        return True
+                    else:
+                        current.draw_move(neighbor, True)
+        return False
